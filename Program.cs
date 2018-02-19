@@ -28,6 +28,14 @@ namespace WordTravel
             backend.Options.Theme = ConsoleThemes.Dark;
             LoggingServices.DefaultBackend = backend;
 
+            PlayGame();
+
+            Console.WriteLine("Press ENTER to exit.");
+            Console.ReadLine();
+        }
+
+        private static void PlayGame()
+        {
             Console.WriteLine("Loading... This may take up to a minute...");
 
             Traveler game = new Traveler(Dictionary.GetWordsOfLength(START_WORD.Length), START_WORD, END_WORD);
@@ -71,13 +79,17 @@ namespace WordTravel
 
             if (game.Over)
             {
+                Console.WriteLine();
                 Console.WriteLine("Congrats!");
                 Console.WriteLine("Win in " + game.UserMoves + " moves.");
                 Console.WriteLine();
+                Console.WriteLine("This is how I would have done it:");
+                foreach (String s in game.Path)
+                {
+                    Console.WriteLine(s);
+                }
+                Console.WriteLine();
             }
-
-            Console.WriteLine("Press ENTER to exit.");
-            Console.ReadLine();
         }
     }
 }
